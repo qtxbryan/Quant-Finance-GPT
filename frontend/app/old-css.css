@@ -8,41 +8,20 @@ body {
 
 @layer base {
   :root {
-    --background: 222 47% 11%;
+    --background: 0 0% 7%;
+    --card: 0 0% 10%;
+    --card-hover: 0 0% 13%;
     --foreground: 0 0% 100%;
+    --muted: 0 0% 40%;
 
-    --card: 223 47% 14%;
-    --card-foreground: 0 0% 100%;
+    --primary: 271 95% 75%;
+    --primary-hover: 271 95% 70%;
+    --secondary: 53 70% 78%;
 
-    --popover: 223 47% 14%;
-    --popover-foreground: 0 0% 100%;
+    --success: 142 76% 36%;
+    --success-foreground: 142 76% 90%;
 
-    --primary: 252 95% 73%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 32 95% 65%;
-    --secondary-foreground: 0 0% 100%;
-
-    --tertiary: 170 95% 45%;
-    --tertiary-foreground: 0 0% 100%;
-
-    --muted: 223 47% 20%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 252 95% 73%;
-    --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 100%;
-
-    --success: 142 72% 29%;
-    --success-foreground: 144 70% 97%;
-
-    --border: 223 47% 18%;
-    --input: 223 47% 18%;
-    --ring: 223 47% 18%;
-
-    --radius: 0.75rem;
+    --radius: 1.25rem;
   }
 }
 
@@ -69,16 +48,13 @@ body {
   .bg-success {
     background-color: hsl(var(--success));
   }
-  .bg-tertiary {
-    background-color: hsl(var(--tertiary));
-  }
 
   /* Text Colors */
   .text-foreground {
     color: hsl(var(--foreground));
   }
   .text-muted {
-    color: hsl(var(--muted-foreground));
+    color: hsl(var(--muted));
   }
   .text-success-foreground {
     color: hsl(var(--success-foreground));
@@ -86,8 +62,9 @@ body {
 
   /* Border Colors */
   .border-border {
-    border-color: hsl(var(--border));
+    border-color: hsl(var(--border)); /* Ensure --border is defined */
   }
+
   /* Add more custom utility classes as needed */
 }
 
@@ -123,33 +100,5 @@ body {
   .status-badge.success::before {
     content: "";
     @apply w-1.5 h-1.5 rounded-full bg-success;
-  }
-
-  .sidebar-item {
-    @apply flex items-center gap-3 px-4 py-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors;
-  }
-
-  .sidebar-item.active {
-    @apply bg-muted text-foreground;
-  }
-
-  .status-indicator {
-    @apply w-2 h-2 rounded-full;
-  }
-
-  .status-indicator.good {
-    @apply bg-tertiary;
-  }
-
-  .status-indicator.warning {
-    @apply bg-secondary;
-  }
-
-  .status-indicator.danger {
-    @apply bg-destructive;
-  }
-
-  .chart-tooltip {
-    @apply bg-card p-2 rounded-lg border border-border shadow-lg;
   }
 }

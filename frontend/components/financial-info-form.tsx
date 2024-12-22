@@ -14,6 +14,8 @@ import {
 } from "@/components/ui/select";
 import { ProgressBar } from "./progress-bar";
 import { FormStep } from "./form-step";
+import { FinancialResultPopout } from "./financial-result";
+import { redirect } from "next/navigation";
 
 interface FinancialInfo {
   name: string;
@@ -41,6 +43,7 @@ export function FinancialInfoForm({ onBack }: { onBack: () => void }) {
     useState<FinancialInfo>(initialState);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const [showResults, setShowResults] = useState(false);
 
   const totalSteps = 4;
 
@@ -111,6 +114,8 @@ export function FinancialInfoForm({ onBack }: { onBack: () => void }) {
         );
         setLoading(false);
       }
+
+      setShowResults(true);
     }
   };
 
@@ -120,6 +125,16 @@ export function FinancialInfoForm({ onBack }: { onBack: () => void }) {
     } else {
       onBack(); // Back to SignUpForm
     }
+  };
+
+  const handleResultsBack = () => {
+    setShowResults(false);
+  };
+
+  const handleResultsContinue = () => {
+    console.log("Form submitted: ", financialInfo);
+    // NEED TO MIGRATE THE FORM SUBMISSION LOGIC TO HERE
+    redirect("/onboarding");
   };
 
   return (
@@ -257,6 +272,15 @@ export function FinancialInfoForm({ onBack }: { onBack: () => void }) {
             : "Next"}
         </Button>
       </div>
+      <AnimatePresence>
+        {showResults && (
+          <FinancialResultPopout
+            financialInfo={financialInfo}
+            onBack={handleResultsBack}
+            onContinue={handleResultsContinue}
+          />
+        )}
+      </AnimatePresence>
       {message && (
         <p className="text-center mt-4 text-sm text-green-400">{message}</p>
       )}
