@@ -10,6 +10,13 @@ class UserModel:
         mongo.db.users.insert_one(user)
 
     @classmethod
+    def find_by_id(cls, user_id):
+        users_collection = mongo.db.users
+        if isinstance(user_id, str):
+            user_id = ObjectId(user_id)
+        return users_collection.find_one({"_id": user_id})
+    
+    @classmethod
     def find_user_by_email(cls, email):
         return mongo.db.users.find_one({"email": email})
     

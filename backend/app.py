@@ -1,7 +1,7 @@
 from flask import Flask, Blueprint
 from flask_restx import Api
 from flask_jwt_extended import JWTManager
-from api.config import Config
+from config import Config
 from api.constants import AppConstants as const
 from api.extensions import mongo, bcrypt
 from flask_cors import CORS
@@ -68,7 +68,19 @@ def register_namespaces(api):
     
     from api.modules.portfolio import controller as portfolio_controller
     api.add_namespace(portfolio_controller.ns)
-
+    
+    from api.modules.stocks import controller as stocks_controller
+    api.add_namespace(stocks_controller.ns)
+    
+    from api.modules.goals import controller as goals_controller
+    api.add_namespace(goals_controller.ns)
+    
+    from api.modules.chatgpt import controller as chatgpt_controller
+    api.add_namespace(chatgpt_controller.ns)
+    
+    from api.modules.calculations import controller as calculations_controller 
+    api.add_namespace(calculations_controller.ns)
+    
 if __name__ == '__main__':
     app = create_app()
     app.run(debug=True)

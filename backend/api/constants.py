@@ -15,3 +15,6 @@ class AppConstants(Const):
     VERSION = "v1"
     API_VERSION_PREFIX='api/'
     APP_VERSION_URL = API_VERSION_PREFIX + VERSION
+    
+class FinanceConstants(Const):
+    INFLATION_RATE = 0.02

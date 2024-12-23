@@ -12,3 +12,4 @@ class Config:
     BCRYPT_LOG_ROUNDS = int(os.getenv('BCRYPT_LOG_ROUNDS', 12))
     MONGO_DBNAME = "quantfyp"
     FINNHUB_API_KEY = os.getenv('FINNHUB_API_KEY')
+    OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
